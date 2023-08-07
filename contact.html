@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ======== Page title ============ -->
-    <title>Your Vision, Our Expertise - Rav Link Inc.</title>
+    <title>Rav Link Inc - Contact Us</title>
     <meta name="description" content="Rav Link Inc. offers top-notch IT solutions, cutting-edge technology services, and effective marketing strategies. Empowering businesses with transformative digital success and fostering long-lasting partnerships.">
     <meta name="author" content="mabugucam">
     <meta name="keywords" content="Rav Link Inc., IT solutions, technology, marketing, digital success, web development, app development, digital marketing">
@@ -35,6 +35,50 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- template main style css file -->
     <link rel="stylesheet" href="style.css">
+    <!-- Toastify -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+	<!-- EmailJS -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+	
+	<script type="text/javascript">
+        (function() {
+            emailjs.init('Ph0VyvGindO4vN64C');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                // event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_u4qq6vm', 'template_wf6smzg', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                        // reset each input field in the form
+                      var inputs = document.getElementById('contact-form').getElementsByTagName('input');
+                      for (var i = 0; i < inputs.length; i++) {
+                          inputs[i].value = '';
+                      }
+                      var textarea = document.getElementById('contact-form').getElementsByTagName('textarea')[0];
+                      textarea.value = '';
+                      Toastify({
+                      text: "Message sent successfully!",
+                      duration: 3000,
+                      close: true,
+                      gravity: "bottom",
+                      position: "right",
+                      backgroundColor: "#4CAF50",
+                      stopOnFocus: true,
+                  }).showToast();
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
     
 </head>
 
@@ -186,16 +230,16 @@
         </div>
     </header>
 
-    <div class="page-banner-wrap text-center bg-cover" style="background-image: url('assets/img/page-banner.jpg')">
+    <div class="page-banner-wrap text-center bg-cover" style="background-image: url('assets/img/contactbanner.jpg')">
         <div class="container">
             <div class="page-heading text-white">
                 <h1>Contact Us</h1>
             </div>
             <nav>
-                <ol class="breadcrumb">
+                <!-- <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">contact Us</li>
-                </ol>
+                </ol> -->
             </nav>
         </div>
     </div>
@@ -211,13 +255,12 @@
                             </div>
                             <div class="title">
                                 <h4>Email Address</h4>
-                                <span>Sent mail asap anytime</span>
+                                <!-- <span>Contact us via e-mail</span> -->
                             </div>
                         </div>
                         <div class="bottom-part">                            
                             <div class="info">
-                                <p>info@example.com</p>
-                                <p>jobs@example.com</p>
+                                <p>info@ravlink.ca</p>
                             </div>
                             <div class="icon">
                                 <i class="fal fa-arrow-right"></i>
@@ -233,13 +276,13 @@
                             </div>
                             <div class="title">
                                 <h4>Phone Number</h4>
-                                <span>call us asap anytime</span>
+                                <span></span>
                             </div>
                         </div>
                         <div class="bottom-part">                            
                             <div class="info">
-                                <p>098-098-098-09</p>
-                                <p>+(098) 098-098-765</p>
+                                <p>(437)219-6444</p>
+                                <p></p>
                             </div>
                             <div class="icon">
                                 <i class="fal fa-arrow-right"></i>
@@ -255,13 +298,13 @@
                             </div>
                             <div class="title">
                                 <h4>Office Address</h4>
-                                <span>Sent mail asap anytime</span>
+                                <span></span>
                             </div>
                         </div>
                         <div class="bottom-part">                            
                             <div class="info">
-                                <p>B2, Miranda City Tower</p>
-                                <p>New York, US</p>
+                                <p>10 Honeycrisp Cres, Vaughan</p>
+                                <!-- <p>Vaughan L4K 0M7, ON</p> -->
                             </div>
                             <div class="icon">
                                 <i class="fal fa-arrow-right"></i>
@@ -281,39 +324,39 @@
     
                 <div class="col-12 col-lg-12">
                     <div class="contact-form">                                                        
-                        <form action="mail.php" class="row" id="contact-form">
+                        <form class="row" id="contact-form">
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <label for="fname">Full Name</label>
-                                    <input type="text" id="fname" placeholder="Enter Name" >                                         
+                                    <!-- <label for="fname">Full Name</label> -->
+                                    <input required type="text" name="dzName" placeholder="Enter Name" >                                         
                                 </div>
                             </div>                            
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" placeholder="Enter Email Address" >                                         
+                                    <!-- <label for="email">Email Address</label> -->
+                                    <input required type="email" name="dzEmail" placeholder="Enter Email Address" >                                         
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="text" id="phone" placeholder="Enter Number">                                         
+                                    <!-- <label for="phone">Phone Number</label> -->
+                                    <input required type="text" name="dzPhoneNumber" placeholder="Enter Number">                                         
                                 </div>
                             </div>                                      
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <label for="subject">Subject</label>
-                                    <input type="text" id="subject" placeholder="Enter Subject">                                         
+                                    <!-- <label for="subject">Subject</label> -->
+                                    <input type="text" name="dzSubject" placeholder="Enter Subject">                                         
                                 </div>
                             </div>                                      
                             <div class="col-md-12 col-12">
                                 <div class="single-personal-info">
-                                    <label for="message">Enter Message</label>
-                                    <textarea id="message" placeholder="Enter message"></textarea>                                        
+                                    <!-- <label for="message">Enter Message</label> -->
+                                    <textarea required name="message" placeholder="Enter message"></textarea>                                        
                                 </div>
                             </div>                                      
                             <div class="col-md-12 col-12 text-center">
-                                <input class="submit-btn" type="submit" value="Get A Quote">
+                                <button class="submit-btn text-white" type="submit" value="send">Send</button>
                             </div>                                      
                         </form>
                     </div>
