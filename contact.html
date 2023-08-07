@@ -50,7 +50,7 @@
     <script type="text/javascript">
         window.onload = function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
-                // event.preventDefault();
+                event.preventDefault();
                 // generate a five digit number for the contact_number variable
                 this.contact_number.value = Math.random() * 100000 | 0;
                 // these IDs from the previous steps
@@ -328,25 +328,25 @@
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
                                     <!-- <label for="fname">Full Name</label> -->
-                                    <input required type="text" name="dzName" placeholder="Enter Name" >                                         
+                                    <input required class="contact-form" type="text" name="dzName" placeholder="Enter Name" >                                         
                                 </div>
                             </div>                            
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
                                     <!-- <label for="email">Email Address</label> -->
-                                    <input required type="email" name="dzEmail" placeholder="Enter Email Address" >                                         
+                                    <input required class="contact-form" type="email" name="dzEmail" placeholder="Enter Email Address" >                                         
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
                                     <!-- <label for="phone">Phone Number</label> -->
-                                    <input required type="text" name="dzPhoneNumber" placeholder="Enter Number">                                         
+                                    <input required class="contact-form" type="text" name="dzPhoneNumber" placeholder="Enter Number">                                         
                                 </div>
                             </div>                                      
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
                                     <!-- <label for="subject">Subject</label> -->
-                                    <input type="text" name="dzSubject" placeholder="Enter Subject">                                         
+                                    <input class="contact-form" type="text" name="dzSubject" placeholder="Enter Subject">                                         
                                 </div>
                             </div>                                      
                             <div class="col-md-12 col-12">
