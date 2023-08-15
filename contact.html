@@ -44,17 +44,22 @@
 	
 	<script type="text/javascript">
         (function() {
-            emailjs.init('Ph0VyvGindO4vN64C');
+            emailjs.init("bGcHz5PtW60a7W_yO");
         })();
     </script>
-    <script type="text/javascript">
+
+	
+
+
+
+    <!-- <script type="text/javascript">
         window.onload = function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 // generate a five digit number for the contact_number variable
                 this.contact_number.value = Math.random() * 100000 | 0;
                 // these IDs from the previous steps
-                emailjs.sendForm('service_u4qq6vm', 'template_wf6smzg', this)
+                emailjs.sendForm('service_plh1e6e', 'template_wf6smzg', this)
                     .then(function() {
                         console.log('SUCCESS!');
                         // reset each input field in the form
@@ -78,7 +83,7 @@
                     });
             });
         }
-    </script>
+    </script> -->
     
 </head>
 
@@ -317,7 +322,7 @@
             <div class="row pt-5">
                 <div class="col-12 col-xl-8 offset-xl-2 text-center">
                     <div class="section-title">
-                        <span>fil the form</span>
+                        <span>Fill the form</span>
                         <h2>get in touch</h2>
                     </div>
                 </div>
@@ -327,32 +332,32 @@
                         <form class="row" id="contact-form">
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <!-- <label for="fname">Full Name</label> -->
-                                    <input required class="contact-form" type="text" name="dzName" placeholder="Enter Name" >                                         
+                                    <label for="fname">Full Name</label>
+                                    <input required class="contact-form" id="name" type="text" placeholder="Enter Name" >                                         
                                 </div>
                             </div>                            
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <!-- <label for="email">Email Address</label> -->
-                                    <input required class="contact-form" type="email" name="dzEmail" placeholder="Enter Email Address" >                                         
+                                    <label for="email">Email Address</label>
+                                    <input required class="contact-form" id="email" type="email" placeholder="Enter Email Address" >                                         
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <!-- <label for="phone">Phone Number</label> -->
-                                    <input required class="contact-form" type="text" name="dzPhoneNumber" placeholder="Enter Number">                                         
+                                    <label for="phone">Phone Number</label>
+                                    <input required class="contact-form" id="phone" type="text" placeholder="Enter Number">                                         
                                 </div>
                             </div>                                      
                             <div class="col-md-6 col-12">
                                 <div class="single-personal-info">
-                                    <!-- <label for="subject">Subject</label> -->
-                                    <input class="contact-form" type="text" name="dzSubject" placeholder="Enter Subject">                                         
+                                    <label for="subject">Subject</label>
+                                    <input class="contact-form" id="subject" type="text" placeholder="Enter Subject">                                         
                                 </div>
                             </div>                                      
                             <div class="col-md-12 col-12">
                                 <div class="single-personal-info">
-                                    <!-- <label for="message">Enter Message</label> -->
-                                    <textarea required name="message" placeholder="Enter message"></textarea>                                        
+                                    <label for="message">Enter Message</label>
+                                    <textarea required id="message" type="text" placeholder="Enter message"></textarea>                                        
                                 </div>
                             </div>                                      
                             <div class="col-md-12 col-12 text-center">
@@ -462,7 +467,7 @@
                                 <div class="newsletter_box">
                                     <form action="#">
                                         <input type="email" placeholder="Enter email address" required>
-                                        <button class="submit-btn" type="submit"><i class="fas fa-envelope-open"></i></button>
+                                        <button class="submit-btn"><i class="fas fa-envelope-open"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -511,6 +516,7 @@
     <script src="assets/js/metismenu.js"></script>
     <script src="assets/js/nice-select2.js"></script>
     <script src="assets/js/active.js"></script>
+    <script src="assets/js/emailsent.js"></script>
 </body>
 
 </html>
