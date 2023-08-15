@@ -1,11 +1,31 @@
 function sendMail() {
-    var template = {
-        form_name: document.getElementById("name").value,
-        form_email: document.getElementById("email").value,
-        form_phone: document.getElementById("phone").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value
+
+    var form_name = document.getElementById("name").value;
+    var form_email = document.getElementById("email").value;
+    var form_phone = document.getElementById("phone").value;
+    var subject = document.getElementById("subject").value;
+    var message = document.getElementById("message").value;
+
+    // Check if required fields are filled
+    if (!form_name || !form_email || !form_phone || !subject || !message) {
+        Toastify({
+            text: "Please fill in all required fields.",
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: "#FF5733",
+            stopOnFocus: true,
+        }).showToast();
+        return; // Prevent form submission if fields are missing
     }
+    var template = {
+        form_name: form_name,
+        form_email: form_email,
+        form_phone: form_phone,
+        subject: subject,
+        message: message
+    };
     emailjs.send('service_plh1e6e', 'template_wf6smzg', template)
         .then(function (res) {
             console.log('SUCCESS!', res.status, res.text);
