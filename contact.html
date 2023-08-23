@@ -47,43 +47,6 @@
             emailjs.init("bGcHz5PtW60a7W_yO");
         })();
     </script>
-
-	
-
-
-
-    <!-- <script type="text/javascript">
-        window.onload = function() {
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                // generate a five digit number for the contact_number variable
-                this.contact_number.value = Math.random() * 100000 | 0;
-                // these IDs from the previous steps
-                emailjs.sendForm('service_plh1e6e', 'template_wf6smzg', this)
-                    .then(function() {
-                        console.log('SUCCESS!');
-                        // reset each input field in the form
-                      var inputs = document.getElementById('contact-form').getElementsByTagName('input');
-                      for (var i = 0; i < inputs.length; i++) {
-                          inputs[i].value = '';
-                      }
-                      var textarea = document.getElementById('contact-form').getElementsByTagName('textarea')[0];
-                      textarea.value = '';
-                      Toastify({
-                      text: "Message sent successfully!",
-                      duration: 3000,
-                      close: true,
-                      gravity: "bottom",
-                      position: "right",
-                      backgroundColor: "#4CAF50",
-                      stopOnFocus: true,
-                  }).showToast();
-                    }, function(error) {
-                        console.log('FAILED...', error);
-                    });
-            });
-        }
-    </script> -->
     
 </head>
 
@@ -175,9 +138,9 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="header-right-element">
+                    <!-- <div class="header-right-element">
                         <a href="contact.html" class="theme-btn text-white">Contact Us</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="d-block d-lg-none col-sm-1 col-md-8 col-6">
                     <div class="mobile-nav-wrap">
