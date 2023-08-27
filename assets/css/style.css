@@ -5514,6 +5514,19 @@ header.header-3 .main-menu ul>li>ul ul {
   background-color: #256ad7;
 }
 
+.icon svg {
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  overflow: hidden;
+  transition: fill 0.3s;
+}
+
+.icon:hover svg {
+  fill: #256ad7;
+}
+
 .service-details-contents .contents .single-service-features:hover .icon {
   color: #FFF;
 }
