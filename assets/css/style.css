@@ -5404,8 +5404,8 @@ header.header-3 .main-menu ul>li>ul ul {
 }
 
 .single-service-top-icon:hover .icon img {
-  -webkit-filter: brightness(100);
-  filter: brightness(100);
+  -webkit-filter: invert(100);
+  filter: invert(100);
 }
 
 .single-service-top-icon:hover h4 a {
@@ -9582,4 +9582,24 @@ footer .footer-bottom .social-links a:last-of-type {
 
 .fixthebutton:hover {
   color: white;
+}
+
+.label-title {
+  margin-bottom: 0;
+}
+
+.checkbox-input {
+  margin-bottom: 1px;
+}
+
+.platform-label {
+  margin-bottom: 1px;
+  font-weight: 0;
+  font-size: medium;
+}
+
+.hidden-input {
+  display: none;
+  height: 10px;
+  margin-bottom: 25px;
 }
