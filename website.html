@@ -50,6 +50,38 @@
 </head>
 
 <body class="body-wrapper">    
+
+    <!-- Messenger Chat plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "119056207954503");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v17.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
     <!-- preloader -->
     <div id="preloader" class="preloader">
         <div class="animation-preloader">
@@ -422,7 +454,7 @@
         <div class="container">
             <div class="col-12 col-xl-6 offset-xl-3 col-md-8 offset-md-2 text-center">
                 <div class="section-title text-white">
-                    <span>Use Cases of Our Website Services</span>
+                    <!-- <span>Use Cases of Our Website Services</span> -->
                     <h2>How Having a Website
                         Can Positively Impact Your Business</h2>
                 </div>
@@ -485,6 +517,23 @@
                 </div>
                 <h3 class="mt-3 text-white">Choose the best partner for your website!</h3>
                 <a href="website.html#cont" class="theme-btn text-white mt-35">Get started with our service now!</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="best-services-wrapper section-padding bg-cover">
+        <div class="container">
+            <div class="col-12 col-xl-6 offset-xl-3 col-md-8 offset-md-2 text-center">
+                <div class="section-title">
+                    <h2>Our Flow</h2>
+                </div>
+            </div>
+            <div class="row text-center">  
+                <div class="about-img-funfact-content d-flex ">
+                    <img src="assets/img/processh.jpg" style="height:100%; width: 100%;" class="img-round m-auto hor" alt="Process">
+                    <img src="assets/img/processv.jpg" class="img-round m-auto ver" alt="Process">
+                </div>    
             </div>
         </div>
     </section>
@@ -649,7 +698,7 @@
         </div>
     </section>
 
-    <!-- <section class="our-pricing-plan-wrapper section-padding">
+    <section class="our-pricing-plan-wrapper section-padding">
         <div class="container">
             <div class="col-lg-8 offset-lg-2 text-center col-12">
                 <div class="section-title">
@@ -663,14 +712,14 @@
                         <div class="plan-title">
                             <h2>Start-Up Plan</h2>
                         </div>
-                        <div class="plan-value">
-                            <span class="text-white">$19.00</span>
-                            USD Billed monthly
+                        <div class="plan-value text-warning">
+                            <span class="text-white">$49.00</span>
+                            Monthly Subscription
                         </div>
                         <div class="plan-buy-btn">
                             <p>Basic plan for small companies with
                                 one month subscription.</p>
-                            <a href="pricing.html" class="theme-btn">Purchase Now <i class="fal fa-long-arrow-right"></i></a>
+                            <a href="website.html#cont" class="theme-btn">Book Now <i class="fal fa-long-arrow-right"></i></a>
                         </div>
                         <ul class="plan-service-list">
                             <li>1 Warehouse</li>
@@ -686,14 +735,14 @@
                         <div class="plan-title">
                             <h2>Scale-Up Plan</h2>
                         </div>
-                        <div class="plan-value">
-                            <span class="text-white">$49.00</span>
-                            USD Billed monthly
+                        <div class="plan-value text-warning">
+                            <span class="text-white">$549.00</span>
+                            Lifetime Payment
                         </div>
                         <div class="plan-buy-btn">
                             <p>Standard plan for small companies with
                                 one month subscription.</p>
-                            <a href="pricing.html" class="theme-btn">Purchase Now <i class="fal fa-long-arrow-right"></i></a>
+                            <a href="website.html#cont" class="theme-btn">Book Now <i class="fal fa-long-arrow-right"></i></a>
                         </div>
                         <ul class="plan-service-list">
                             <li>2 Warehouse</li>
@@ -709,14 +758,14 @@
                         <div class="plan-title">
                             <h2>Premium Plan</h2>
                         </div>
-                        <div class="plan-value">
-                            <span class="text-white">$99.00</span>
-                            USD Billed monthly
+                        <div class="plan-value text-warning">
+                            <span class="text-white">$599.00</span>
+                            Monthly Subscription
                         </div>
                         <div class="plan-buy-btn">
                             <p>Advanced plan for big companies with
                                 one month subscription.</p>
-                            <a href="pricing.html" class="theme-btn">Purchase Now <i class="fal fa-long-arrow-right"></i></a>
+                            <a href="website.html#cont" class="theme-btn">Book Now <i class="fal fa-long-arrow-right"></i></a>
                         </div>
                         <ul class="plan-service-list">
                             <li>5 Warehouse</li>
@@ -729,7 +778,7 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <section class="contact-us-wrapper section-bg section-padding" id="cont">
         <div class="container">
@@ -801,7 +850,7 @@
                                     </div>
                                 </div>
                             </div>
-                                                                                                
+                                                              
                             <div class="col-md-12 col-12">
                                 <button class="theme-btn text-white" type="submit" value="send">get a call-back</button>
                                 <!-- <input class="theme-btn" type="submit" value="Send A Message"> -->

@@ -9603,3 +9603,17 @@ footer .footer-bottom .social-links a:last-of-type {
   height: 10px;
   margin-bottom: 25px;
 }
+
+.ver {
+  display: none;
+}
+
+@media screen and (max-width: 599px) {
+  .hor {
+    display: none;
+  }
+
+  .ver {
+    display: block;
+  }
+}
