@@ -1,104 +1,82 @@
-/*
-Template: QuanTech
-Author: Modina Theme
-Author URI: https://themeforest.net/user/modinatheme/
-Description: IT Solution & Technology HTML  Template
-Version: 1.2.0
-*/
+.modal {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9;
+    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*
-=================================
-|***    Table of contents:   ***|
-=================================
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+}
 
-Main Style file-> assets/css/style.css 
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
 
-All the SCSS File in SCSS Folder of Assets Folder. You can read the doc file also for better understand.
+.close:hover {
+    color: #000;
+}
 
-// BASIC
-@import 'basic';
+/* Bar styles */
+.bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
 
-// MIXIN
-@import 'variables';
+.slot {
+    flex: 1;
+    height: 20px;
+    margin: 0 2px;
+    background-color: gray;
+}
 
-// TYPOGRAPHY
-@import 'typography';
+.slot.disabled {
+    opacity: 0.5;
+}
 
-// MIX
-@import 'mix';
+.slot.active {
+    background-color: #024B5A;
+    animation: blinking 1s infinite;
+}
 
-// HELPER
-@import 'helper';
+@keyframes blinking {
+    0% {
+        opacity: 0.5;
+    }
 
-// ICON FONTS
-@import 'icon';
+    50% {
+        opacity: 1;
+    }
 
-// ANIMATION
-@import 'animation';
+    100% {
+        opacity: 0.5;
+    }
+}
 
-// Button 
-@import 'btn';
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+    .modal-content {
+        padding: 10px;
+    }
 
-// Colors 
-@import 'colors';
-
-// Preloader 
-@import 'preloader';
-
-/* ----------------------------------
-    Template Section Styles
- ------------------------------------*/
-
- /* // Menu - Header Section 
- @import 'header';
- 
- // Hero Slide - Section 
- @import 'hero';
- 
- // Section Title - Heading 
- @import 'section';
- 
- // About - Section 
- @import 'about';
- 
- // Features - Section 
- @import 'features';
- 
- // services - Section 
- @import 'services';
- 
- // testimonial - Section 
- @import 'testimonial';
- 
- // Portfolio - Cases - Section 
- @import 'project';
- 
- // Price Table - Section 
- @import 'price';
- 
- // Call To Action - Section 
- @import 'cta';
- 
- // Content Block - Section 
- @import 'contentblock';
- 
- // team - Section 
- @import 'team';
- 
- // funfact - Section 
- @import 'funfact';
- 
- // FAQ - Section 
- @import 'faq';
- 
- // Blog - Section 
- @import 'blog';
- 
- // Contact Us - Section 
- @import 'contact';
- 
- // footer - Section 
- @import 'footer';n facts */
-
-
-
+    .bar .slot {
+        height: 10px;
+        margin: 0 1px;
+    }
+}
