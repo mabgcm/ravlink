@@ -51,13 +51,13 @@
 }
 
 .slot.active {
-    background-color: #024B5A;
+    background-color: red;
     animation: blinking 1s infinite;
 }
 
 @keyframes blinking {
     0% {
-        opacity: 0.5;
+        opacity: 0.3;
     }
 
     50% {
@@ -65,7 +65,7 @@
     }
 
     100% {
-        opacity: 0.5;
+        opacity: 0.3;
     }
 }
 
