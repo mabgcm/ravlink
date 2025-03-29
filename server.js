@@ -11,7 +11,15 @@ app.use(cors({
 }));
 
 app.post('/create-checkout-session', async (req, res) => {
+    if (req.headers['content-type'] !== 'application/json') {
+        return res.status(400).json({ error: 'Invalid Content-Type. Expected application/json.' });
+    }
+
     const { productName, productDescription, productPrice } = req.body;
+
+    if (!productName || !productDescription || !productPrice) {
+        return res.status(400).json({ error: 'Missing required fields: productName, productDescription, or productPrice.' });
+    }
 
     try {
         const session = await stripe.checkout.sessions.create({

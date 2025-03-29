@@ -1210,12 +1210,16 @@
                         <script src="https://js.stripe.com/v3/"></script>
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
-
                                 document.querySelectorAll(".stripe-payment-button").forEach(button => {
                                     button.addEventListener("click", async function () {
-                                        const productName = this.getAttribute("data-product-name"); // Get product name
-                                        const productDescription = this.getAttribute("data-product-description"); // Get product description
-                                        const productPrice = this.getAttribute("data-product-price"); // Get product price
+                                        const productName = this.getAttribute("data-product-name");
+                                        const productDescription = this.getAttribute("data-product-description");
+                                        const productPrice = this.getAttribute("data-product-price");
+
+                                        if (!productName || !productDescription || !productPrice) {
+                                            alert('Missing product details. Please try again.');
+                                            return;
+                                        }
 
                                         try {
                                             const response = await fetch("/create-checkout-session", {
