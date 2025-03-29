@@ -1,6 +1,7 @@
+require('dotenv').config(); // Load environment variables
 const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')('STRIPE_SECRET_KEY');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Use environment variable for Stripe key
 
 const app = express();
 
@@ -29,8 +30,8 @@ app.post('/create-checkout-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: 'https://ravlink.ca/success.html', // Replace with your live success URL
-            cancel_url: 'https://ravlink.ca/cancel.html', // Replace with your live cancel URL
+            success_url: process.env.SUCCESS_URL, // Use environment variable for success URL
+            cancel_url: process.env.CANCEL_URL, // Use environment variable for cancel URL
         });
 
         console.log('Checkout session created:', session.id); // Log session ID
