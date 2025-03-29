@@ -1231,7 +1231,11 @@
                                             });
 
                                             if (!response.ok) {
-                                                throw new Error(`HTTP error! status: ${response.status}`);
+                                                if (response.status === 405) {
+                                                    alert('The server does not allow this request method. Please contact support.');
+                                                } else {
+                                                    throw new Error(`HTTP error! status: ${response.status}`);
+                                                }
                                             }
 
                                             const session = await response.json();

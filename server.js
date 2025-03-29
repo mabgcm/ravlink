@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: ['http://127.0.0.1:5500', 'https://ravlink.ca'], // Allow local development and live domain
+    methods: ['GET', 'POST'], // Ensure POST method is allowed
 }));
 
 app.post('/create-checkout-session', async (req, res) => {
