@@ -11,6 +11,7 @@ app.use(cors({
 }));
 
 app.post('/create-checkout-session', async (req, res) => {
+    // Ensure the endpoint is correctly configured to handle POST requests
     if (req.headers['content-type'] !== 'application/json') {
         return res.status(400).json({ error: 'Invalid Content-Type. Expected application/json.' });
     }
