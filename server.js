@@ -48,7 +48,7 @@ app.post('/create-checkout-session', async (req, res) => {
         res.json({ id: session.id });
     } catch (error) {
         console.error('Error creating checkout session:', error.message); // Log error
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: 'Internal Server Error. Please try again later.' });
     }
 });
 

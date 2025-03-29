@@ -1238,11 +1238,18 @@
                                                 }
                                             }
 
-                                            const session = await response.json();
+                                            const session = await response.json().catch(() => {
+                                                throw new Error('Invalid JSON response from server.');
+                                            });
+
+                                            if (!session || !session.id) {
+                                                throw new Error('Invalid session data received from server.');
+                                            }
+
                                             window.location.href = `https://checkout.stripe.com/pay/${session.id}`;
                                         } catch (error) {
                                             console.error('Error during checkout session creation:', error.message);
-                                            alert('Failed to create a checkout session. Please check your internet connection and try again.');
+                                            alert('Failed to create a checkout session. Please try again later.');
                                         }
                                     });
                                 });
