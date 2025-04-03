@@ -1208,53 +1208,57 @@
                         <script src="assets/js/active.js"></script>
                         <script src="assets/js/formsent.js"></script>
                         <script src="https://js.stripe.com/v3/"></script>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                document.querySelectorAll(".stripe-payment-button").forEach(button => {
-                                    button.addEventListener("click", async function () {
-                                        const productName = this.getAttribute("data-product-name");
-                                        const productDescription = this.getAttribute("data-product-description");
-                                        const productPrice = this.getAttribute("data-product-price");
+                        <!-- Stripe Client Script -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stripe = Stripe("pk_test_YOUR_PUBLISHABLE_KEY"); // ✅ Replace with your Stripe public key
 
-                                        if (!productName || !productDescription || !productPrice) {
-                                            alert('Missing product details. Please try again.');
-                                            return;
-                                        }
+        document.querySelectorAll(".stripe-payment-button").forEach(button => {
+            button.addEventListener("click", async function () {
+                const productName = this.getAttribute("data-product-name");
+                const productDescription = this.getAttribute("data-product-description");
+                const productPrice = this.getAttribute("data-product-price");
 
-                                        try {
-                                            const response = await fetch("/create-checkout-session", {
-                                                method: "POST",
-                                                headers: {
-                                                    "Content-Type": "application/json",
-                                                },
-                                                body: JSON.stringify({ productName, productDescription, productPrice }),
-                                            });
+                if (!productName || !productDescription || !productPrice) {
+                    alert('Missing product details. Please try again.');
+                    return;
+                }
 
-                                            if (!response.ok) {
-                                                if (response.status === 405) {
-                                                    alert('The server does not allow this request method. Please contact support.');
-                                                } else {
-                                                    throw new Error(`HTTP error! status: ${response.status}`);
-                                                }
-                                            }
+                try {
+                    const response = await fetch("/create-checkout-session", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ productName, productDescription, productPrice }),
+                    });
 
-                                            const session = await response.json().catch(() => {
-                                                throw new Error('Invalid JSON response from server.');
-                                            });
+                    if (!response.ok) {
+                        if (response.status === 405) {
+                            alert('The server does not allow this request method. Please contact support.');
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return;
+                    }
 
-                                            if (!session || !session.id) {
-                                                throw new Error('Invalid session data received from server.');
-                                            }
+                    const session = await response.json();
+                    if (!session || !session.id) {
+                        throw new Error('Invalid session data received from server.');
+                    }
 
-                                            window.location.href = `https://checkout.stripe.com/pay/${session.id}`;
-                                        } catch (error) {
-                                            console.error('Error during checkout session creation:', error.message);
-                                            alert('Failed to create a checkout session. Please try again later.');
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
+                    await stripe.redirectToCheckout({ sessionId: session.id });
+
+                } catch (error) {
+                    console.error('Error during checkout session creation:', error.message);
+                    alert('Failed to create a checkout session. Please try again later.');
+                }
+            });
+        });
+    });
+</script>
+
                         <!-- Modal Script -->
                         <script>
                             window.onload = function() {

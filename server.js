@@ -1,26 +1,40 @@
-require('dotenv').config(); // Load environment variables
+require('dotenv').config(); // Load environment variables from .env
 const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Use environment variable for Stripe key
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Initialize Stripe with your secret key
 
 const app = express();
 
-app.use(express.json());
+// Allow CORS for local development and production
 app.use(cors({
-    origin: ['http://127.0.0.1:5500', 'https://ravlink.ca'], // Allow local development and live domain
-    methods: ['GET', 'POST'], // Ensure POST method is allowed
+    origin: [
+        'http://127.0.0.1:5500',
+        'http://localhost:3000',
+        'https://ravlink.ca'
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true
 }));
 
+app.use(express.json()); // Automatically parse JSON bodies
+
+// Endpoint to create Stripe checkout session
 app.post('/create-checkout-session', async (req, res) => {
-    // Ensure the endpoint is correctly configured to handle POST requests
-    if (req.headers['content-type'] !== 'application/json') {
+    // Allow flexible content-type check
+    const contentType = req.headers['content-type'] || '';
+    if (!contentType.includes('application/json')) {
         return res.status(400).json({ error: 'Invalid Content-Type. Expected application/json.' });
     }
 
     const { productName, productDescription, productPrice } = req.body;
 
+    // Validate required fields
     if (!productName || !productDescription || !productPrice) {
         return res.status(400).json({ error: 'Missing required fields: productName, productDescription, or productPrice.' });
+    }
+
+    if (!process.env.STRIPE_SECRET_KEY || !process.env.SUCCESS_URL || !process.env.CANCEL_URL) {
+        return res.status(500).json({ error: 'Stripe configuration is missing in environment variables.' });
     }
 
     try {
@@ -34,23 +48,24 @@ app.post('/create-checkout-session', async (req, res) => {
                             name: productName,
                             description: productDescription,
                         },
-                        unit_amount: productPrice * 100, // Convert to cents
+                        unit_amount: Math.round(productPrice * 100), // Convert to cents and round
                     },
                     quantity: 1,
                 },
             ],
             mode: 'payment',
-            success_url: process.env.SUCCESS_URL, // Use environment variable for success URL
-            cancel_url: process.env.CANCEL_URL, // Use environment variable for cancel URL
+            success_url: process.env.SUCCESS_URL,
+            cancel_url: process.env.CANCEL_URL,
         });
 
-        console.log('Checkout session created:', session.id); // Log session ID
+        console.log('Checkout session created:', session.id);
         res.json({ id: session.id });
     } catch (error) {
-        console.error('Error creating checkout session:', error.message); // Log error
+        console.error('Error creating checkout session:', error);
         res.status(500).json({ error: 'Internal Server Error. Please try again later.' });
     }
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
-
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
