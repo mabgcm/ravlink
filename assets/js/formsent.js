@@ -1,5 +1,6 @@
+// Initialize the form submission
 function sendMail() {
-
+    // Get values from the form fields
     var full_name = document.getElementById("fname").value;
     var company_name = document.getElementById("cname").value;
     var email = document.getElementById("email").value;
@@ -11,8 +12,7 @@ function sendMail() {
     var twitter = document.getElementById("twitter-text").value;
     var youtube = document.getElementById("youtube-text").value;
 
-
-    // Check if required fields are filled
+    // Validate required fields
     if (!full_name || !company_name || !email || !phone) {
         Toastify({
             text: "Please fill in all required fields.",
@@ -23,8 +23,10 @@ function sendMail() {
             backgroundColor: "#FF5733",
             stopOnFocus: true,
         }).showToast();
-        return; // Prevent form submission if fields are missing
+        return;
     }
+
+    // Prepare data to send
     var template = {
         full_name: full_name,
         company_name: company_name,
@@ -37,9 +39,13 @@ function sendMail() {
         twitter: twitter,
         youtube: youtube
     };
-    emailjs.send('service_8j95bn4', 'template_dqap9ev', template)
+
+    // Use your updated EmailJS credentials
+    emailjs.send('service_plh1e6e', 'template_wf6smzg', template)
         .then(function (res) {
             console.log('SUCCESS!', res.status, res.text);
+
+            // Clear the form
             document.getElementById("fname").value = "";
             document.getElementById("cname").value = "";
             document.getElementById("email").value = "";
@@ -57,24 +63,35 @@ function sendMail() {
             document.getElementById("twitter").checked = false;
             document.getElementById("youtube").checked = false;
 
+            // Success message
             Toastify({
-                text: "Your message sent successfully!",
-                duration: 1500,
+                text: "Your message was sent successfully!",
+                duration: 3000,
                 close: true,
                 gravity: "bottom",
                 position: "left",
                 backgroundColor: "#001253",
                 stopOnFocus: true,
             }).showToast();
+
         }, function (error) {
-            console.log('FAILED...', error);
+            console.error('FAILED...', error);
+
+            // Show error toast
+            Toastify({
+                text: "Failed to send message. Please try again or email us directly.",
+                duration: 5000,
+                close: true,
+                gravity: "bottom",
+                position: "left",
+                backgroundColor: "#f44336",
+                stopOnFocus: true,
+            }).showToast();
         });
-    // console.log(template.message)
 }
 
+// Attach listener to form submit
 document.getElementById('contact-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Call your sendMail() function here
+    event.preventDefault();
     sendMail();
 });
